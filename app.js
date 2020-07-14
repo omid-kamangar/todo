@@ -17,7 +17,7 @@ class Todo {
 
   render() {
     this.todoDiv.innerText = '';
-    
+
     if (this.todos.length == 0) {
       const infoMessage = document.createElement('div');
       infoMessage.innerText = 'The list is empty';
@@ -55,6 +55,8 @@ class Todo {
     span.classList.add('actions');
     deleteLink.classList.add('delete');
 
+    deleteLink.addEventListener('click', () => { this.deleteTodo(todo); });
+
     deleteLink.innerText = 'Delete';
     li.innerText = todo;
 
@@ -62,6 +64,14 @@ class Todo {
     li.append(span);
 
     return li;
+  }
+
+  deleteTodo(todo) {
+    if (confirm("Are you sure?")) {
+      const index = this.todos.indexOf(todo);
+      this.todos.splice(index, 1);
+      this.render();
+    }
   }
 }
 
