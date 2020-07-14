@@ -5,6 +5,8 @@ class Todo {
     this.todoInput = document.getElementById(todoInputId);
     this.todoDiv = document.getElementById(todoListId);
     this.todos = [];
+    this.storage = window.localStorage;
+    this.loadList();
 
     this.todoInput.addEventListener('keyup', (event) => { 
       if (event.keyCode == 13) {
@@ -38,6 +40,7 @@ class Todo {
     const todo = this.todoInput.value;
     this.todoInput.value = '';
     this.todos.push(todo);
+    this.saveList();
     this.render();
   }
 
@@ -71,6 +74,19 @@ class Todo {
       const index = this.todos.indexOf(todo);
       this.todos.splice(index, 1);
       this.render();
+      this.saveList();
+    }
+  }
+
+  saveList() {
+    const str = JSON.stringify(this.todos);
+    this.storage.setItem('todos', str);
+  }
+
+  loadList() {
+    const todos = this.storage.getItem('todos');
+    if (todos) {
+      this.todos = JSON.parse(todos);
     }
   }
 }
