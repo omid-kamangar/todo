@@ -1,8 +1,16 @@
+const ENTER_KEY = 13;
+
 class Todo {
   constructor(todoInputId, todoListId) {
     this.todoInput = document.getElementById(todoInputId);
     this.todoDiv = document.getElementById(todoListId);
-    this.todos = ['Read the book', 'Todo 2'];
+    this.todos = [];
+
+    this.todoInput.addEventListener('keyup', (event) => { 
+      if (event.keyCode == 13) {
+        this.addTodo();
+      }
+    });
 
     this.render();
   }
@@ -14,9 +22,16 @@ class Todo {
       todoOutput.append(this.renderTodo(todo));
       // Add to the ul
     }
-    
+
     this.todoDiv.innerText = '';
     this.todoDiv.append(todoOutput);
+  }
+
+  addTodo() {
+    const todo = this.todoInput.value;
+    this.todoInput.value = '';
+    this.todos.push(todo);
+    this.render();
   }
 
   // <li>
