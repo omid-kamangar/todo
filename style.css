@@ -1,0 +1,35 @@
+#todo-list {
+  padding-top: 40px;
+}
+
+#todo-list ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+#todo-list ul li {
+  padding: 10px;
+  border: 1px dashed #ddd;
+  margin-top: 5px;
+  background-color: rgba(240, 240, 240, 0.4);
+}
+
+span.actions {
+  float: right;
+}
+
+
+a.delete {
+  color: red;
+  cursor: pointer;
+  visibility: hidden;
+}
+
+#todo-list ul li:hover {
+  background-color: rgba(240, 240, 240, 0.9);
+}
+
+#todo-list ul li:hover a.delete {
+  visibility: visible;
+  color: red;
+}
