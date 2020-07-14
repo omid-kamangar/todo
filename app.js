@@ -16,15 +16,22 @@ class Todo {
   }
 
   render() {
-    const todoOutput = document.createElement('ul');
-
-    for (const todo of this.todos) {
-      todoOutput.append(this.renderTodo(todo));
-      // Add to the ul
-    }
-
     this.todoDiv.innerText = '';
-    this.todoDiv.append(todoOutput);
+    
+    if (this.todos.length == 0) {
+      const infoMessage = document.createElement('div');
+      infoMessage.innerText = 'The list is empty';
+      this.todoDiv.append(infoMessage);
+    }
+    else {
+      const todoOutput = document.createElement('ul');
+
+      for (const todo of this.todos) {
+        todoOutput.append(this.renderTodo(todo));
+        // Add to the ul
+      }
+      this.todoDiv.append(todoOutput);
+    }
   }
 
   addTodo() {
