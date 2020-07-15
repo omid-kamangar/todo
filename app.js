@@ -9,7 +9,7 @@ class Todo {
     this.loadList();
 
     this.todoInput.addEventListener('keyup', (event) => { 
-      if (event.keyCode == 13) {
+      if (event.keyCode == ENTER_KEY) {
         this.addTodo();
       }
     });
